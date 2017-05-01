@@ -16,13 +16,17 @@
  ****************************************************************************/
 int intMatches(int key, void * element) {
     // Write Your Code Here
+    int i = *((int *)element);
+    if (key == i) {
+      return 1;
+    }
     return 0;
-}
+  }
 
 // Problem (2/3)
 /*****************************************************************************
  * TODO Check if the key matches the student's id field
- * 
+ *
  * Parameters: key     -- the key to match
  *             element -- a student * cast as a void *
  *
@@ -32,6 +36,12 @@ int intMatches(int key, void * element) {
  ****************************************************************************/
 int studentIdMatches(int key, void * element) {
     // Write Your Code Here
+    student s = *((student *)element);
+    int i = s.id;
+    //printf("key = %i, id = %i\n", key, s.id);
+    if (key == i) {
+      return 1;
+    }
     return 0;
 }
 
@@ -43,7 +53,7 @@ int studentIdMatches(int key, void * element) {
  *             elementSize -- the size of each element
  *             array       -- the array of elements to sum
  *             key         -- the element you are looking for in the array
- *             result      -- if the item was found make result point to the 
+ *             result      -- if the item was found make result point to the
  *                            item otherwise it should be null
  *             MatchesFunc -- function pointer to function that checks if an
  *                            entry in the array matches the key
@@ -54,5 +64,17 @@ int studentIdMatches(int key, void * element) {
  ***************************************************************************/
 int findElement(int n, int elementSize, void * array, int key, void * result, MatchesFunc matches) {
     // Write Your Code Here
+
+    int check = -1;
+    for (int x = 0; x<n; x++) {
+      check = matches(key, (array+(x * elementSize)));
+      if (check == 1) {
+        //*((int *)result) = key;
+        *((student *)result) = *((student *)(array+(x * elementSize)));
+        //result = (array+(x * elementSize));
+        return 1;
+      }
+    }
+    result = NULL;
     return 0;
 }

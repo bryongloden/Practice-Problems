@@ -5,7 +5,7 @@
 
 class ListNode {
     public:
-	int value; 
+	int value;
 	ListNode * next;
 	ListNode * prev;
 	static int node_count;
@@ -30,7 +30,7 @@ class DLList {
 	void print_list( std::string list_name );
 	void insert_last( int value );
 	bool remove( int value );
-	ListNode * get_ith( int ith );
+	ListNode * get_ith( int ith ) const;
 	bool operator == ( const DLList & listB );
 };
 
